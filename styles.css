@@ -1,0 +1,132 @@
+table {
+  min-width: 42em;
+  margin: 3em;
+  padding: 2em;
+  background-color: rgb(222, 222, 222);
+}
+
+td {
+  padding: 1em;
+}
+
+.button {
+  box-sizing: border-box;
+  background-color: rgb(57, 131, 125);
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  font-size: 0.75em;
+  transition: background-color 0.1s ease;
+}
+.button.button--primary, .button.button--primary--disabled {
+  border-radius: 3px;
+  padding: 0.75rem 2rem;
+}
+.button.button--secondary {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.button.button--primary--disabled .arrow {
+  visibility: visible;
+  color: currentColor;
+}
+.button:hover {
+  background-color: rgb(255, 255, 255);
+  color: rgb(57, 131, 125);
+  outline: rgb(57, 131, 125) solid 1px;
+}
+.button:hover .arrow {
+  visibility: visible;
+  color: currentColor;
+}
+.button:focus {
+  background-color: rgb(57, 131, 125);
+  outline: 1px solid rgb(57, 131, 125);
+  outline-offset: 2px;
+}
+.button:focus .arrow {
+  visibility: visible;
+  color: currentColor;
+}
+.button:focus:hover {
+  background-color: rgb(233, 246, 245);
+  color: rgb(57, 131, 125);
+  outline: rgb(57, 131, 125) solid 1px;
+}
+.button:focus:hover .arrow {
+  visibility: visible;
+  color: rgb(233, 246, 245);
+}
+.button:disabled {
+  background-color: rgb(244, 244, 244);
+  color: rgb(92, 92, 92);
+  outline: none;
+  cursor: not-allowed;
+}
+
+.button .arrow {
+  visibility: hidden;
+  margin: 0 2em;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: row;
+  gap: 2em;
+}
+.radio-group .button--radio {
+  appearance: none;
+  width: 1.5em;
+  height: 1.5em;
+  position: relative;
+  cursor: pointer;
+  border-radius: 50%;
+  border: rgb(57, 131, 125) solid 2px;
+  vertical-align: middle;
+  transition: background-color 0.1s ease;
+}
+.radio-group .button--radio:not(:checked) {
+  background: rgb(255, 255, 255);
+}
+.radio-group .button--radio:checked {
+  background-color: rgb(57, 131, 125);
+  outline: none;
+}
+.radio-group .button--radio:hover {
+  box-sizing: border-box;
+  background-color: rgb(233, 246, 245);
+  color: rgb(57, 131, 125);
+  outline: none;
+}
+.radio-group .button--radio:focus-within {
+  background-color: rgb(57, 131, 125);
+  outline: 1px solid rgb(57, 131, 125);
+  outline-offset: 2px;
+}
+.radio-group .button--radio:focus-within:hover {
+  background-color: rgb(233, 246, 245);
+  color: rgb(57, 131, 125);
+  outline: rgb(57, 131, 125) solid 1px;
+}
+.radio-group .radio-disabled {
+  cursor: not-allowed;
+  background-color: rgb(255, 255, 255);
+  outline: rgb(225, 225, 225) solid 1px;
+}
+.radio-group:checked {
+  content: "";
+  display: block;
+  top: 0.2em;
+  width: 0.6em;
+  height: 0.6em;
+  background: rgb(255, 255, 255);
+  border-radius: 50%;
+  transition: background 0.1s;
+}
+.radio-group .button--radio:checked + label::after {
+  display: block;
+}
+
+/*# sourceMappingURL=styles.css.map */

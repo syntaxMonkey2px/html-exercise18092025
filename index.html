@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Exercise</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.css">
+
+
+</head>
+<!-- 
+
+Write HTML showing two buttons, using SASS for styling - (in SCSS format
+with curly braces) to define the styles. One button will be used to show
+default, hover and focus styles, and a separate button which will be
+disabled.
+
+You can choose either the round buttons or the rectangular buttons.
+Choose colours that are similar to the attached design.
+
+If the button is hovered over, any content below the button is pushed
+down. How could the button be styled so that content below the button
+remains fixed?
+ -->
+
+<body>
+    <div>
+        <table>
+            <tr>
+                <td>
+                    <button class="button button--primary">
+                        <span class="arrow"><i class="fa fa-angle-left"></i></span>Button
+                        <span class="arrow"><i class="fa fa-angle-right"></i></button></span>
+                    </button>
+                </td>
+                <td><button disabled class="button button--primary--disabled">
+                        <span class="arrow"><i class="fa fa-angle-left"></i></span>Button
+                        <span class="arrow"><i class="fa fa-angle-right"></i></button></span>
+                    </button>
+                </td>
+
+            </tr>
+            <tr>
+                <td><button class="button button--secondary"><i class="fa fa-plus"></i></button></td>
+                <td><button class="button button--secondary" disabled><i class="fa fa-plus"></i></button></td>
+
+            </tr>
+            <!-- radio -->
+            <tr>
+                <td>
+                    <h3>Radio Button:</h3>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" class="button--radio" name="radio-sample" value="yes"/>Yes</label>
+                        <label>
+                            <input type="radio" class="button--radio" name="radio-sample" value="no"/>
+                            No</label>
+                        <label class="">
+                            <input type="radio" class="button-radio radio-disabled" name="radio-sample" value="na" disabled />Maybe</label>
+                    </div>
+
+                </td>
+            </tr>
+            <!-- checkbox -->
+            <tr>
+                <td><button class="button button--checkbox"></button></td>
+            </tr>
+            <!-- toggle -->
+            <tr>
+                <td><button class="button button--toggle"></button></td>
+            </tr>
+            <tr>
+                <td><button class="button button--group"></button></td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
