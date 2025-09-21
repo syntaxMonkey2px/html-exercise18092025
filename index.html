@@ -26,56 +26,220 @@ remains fixed?
  -->
 
 <body>
-    <div>
-        <table>
-            <tr>
-                <td>
-                    <button class="button button--primary">
-                        <span class="arrow"><i class="fa fa-angle-left"></i></span>Button
-                        <span class="arrow"><i class="fa fa-angle-right"></i></button></span>
-                    </button>
-                </td>
-                <td><button disabled class="button button--primary--disabled">
-                        <span class="arrow"><i class="fa fa-angle-left"></i></span>Button
-                        <span class="arrow"><i class="fa fa-angle-right"></i></button></span>
-                    </button>
-                </td>
+    <div class="content">
+        <div class="button-basic-group">
+            <!-- button basic -->
+            <div class="button--basic">
+                <button class="button button--basic1">
+                    <span class="arrow"><i class="fa fa-angle-left"></i></span>Button
+                    <span class="arrow"><i class="fa fa-angle-right"></i></button></span>
+                </button>
 
-            </tr>
-            <tr>
-                <td><button class="button button--secondary"><i class="fa fa-plus"></i></button></td>
-                <td><button class="button button--secondary" disabled><i class="fa fa-plus"></i></button></td>
+                <button disabled class="button button--basic1--disabled">
+                    <span class="arrow"><i class="fa fa-angle-left"></i></span>Button
+                    <span class="arrow"><i class="fa fa-angle-right"></i></button></span>
+                </button>
+            </div>
+            <div class="button--basic">
+                <button class="button button--basic2"><i class="fa fa-plus"></i></button>
+                <button class="button button--basic2" disabled><i class="fa fa-plus"></i></button>
+            </div>
+        </div>
+        <!-- radio -->
+        <div>
+            <h3>Radio Button:</h3>
+            <div class="radio-group">
+                <label>
+                    <input type="radio" class="button--radio" name="radio-sample" value="yes" />Yes</label>
+                <label>
+                    <input type="radio" class="button--radio" name="radio-sample" value="no" />
+                    No</label>
+                <label>
+                    <input type="radio" class="button--radio radio-disabled" name="radio-sample" value="na"
+                        disabled />Disabled</label>
+            </div>
+        </div>
 
-            </tr>
-            <!-- radio -->
-            <tr>
-                <td>
-                    <h3>Radio Button:</h3>
-                    <div class="radio-group">
-                        <label>
-                            <input type="radio" class="button--radio" name="radio-sample" value="yes"/>Yes</label>
-                        <label>
-                            <input type="radio" class="button--radio" name="radio-sample" value="no"/>
-                            No</label>
-                        <label class="">
-                            <input type="radio" class="button-radio radio-disabled" name="radio-sample" value="na" disabled />Maybe</label>
-                    </div>
 
-                </td>
-            </tr>
-            <!-- checkbox -->
-            <tr>
-                <td><button class="button button--checkbox"></button></td>
-            </tr>
-            <!-- toggle -->
-            <tr>
-                <td><button class="button button--toggle"></button></td>
-            </tr>
-            <tr>
-                <td><button class="button button--group"></button></td>
-            </tr>
-        </table>
+
+        <!-- checkbox -->
+        <div>
+
+            <h3>Checkbox</h3>
+            <div class="checkbox-group">
+                <!-- options -->
+                <div class="checkbox-group--sub" data-group="group1">
+
+                    <label class="label-checkbox">
+                        <input type="checkbox" class="checkbox checkbox-item" name="" data-box="box-all" disabled>
+                        <i class="fa fa-check"></i>
+                        <i class="fa fa-minus"></i>
+                        All
+                    </label>
+                    <label class="label-checkbox">
+                        <input type="checkbox" class="checkbox checkbox-item" name="" data-box="box1">
+                        <i class="fa fa-check"></i>
+                        Item 1
+                    </label>
+                    <label class="label-checkbox">
+                        <input type="checkbox" class="checkbox" name="" data-box="box2">
+                        <i class="fa fa-check"></i>
+                        Item 2
+                    </label>
+
+                </div>
+                <!-- disabled options -->
+                <div class="checkbox-group--sub" data-group="group2">
+                    <label class="label-checkbox">
+                        <input type="checkbox" class="checkbox checkbox--disabled" name="" data-box="box-all" disabled>
+                        <i class="fa fa-check"></i>
+                        <i class="fa fa-minus"></i>
+                        All
+                    </label>
+                    <label class="label-checkbox">
+                        <input type="checkbox" class="checkbox checkbox--disabled" name="" data-box="box1">
+                        <i class="fa fa-check"></i>
+                        Disabled 1
+                    </label>
+                    <label class="label-checkbox">
+                        <input type="checkbox" class="checkbox checkbox--disabled" name="" data-box="box2">
+                        <i class="fa fa-check"></i>
+                        Disabled 2
+                    </label>
+
+                </div>
+                <!-- error -->
+                <div class="checkbox-group--sub" data-group="group3">
+                    <label class="label-checkbox">
+                        <input type="checkbox" class="checkbox checkbox--error" name="" data-box="box-all" disabled>
+                        <i class="fa fa-check"></i>
+                        <i class="fa fa-minus"></i>
+                        All
+                    </label>
+                    <label class="label-checkbox">
+                        <input type="checkbox" class="checkbox checkbox--error" name="" data-box="box1">
+                        <i class="fa fa-check"></i>
+                        Error 1
+                    </label>
+                    <label class="label-checkbox">
+                        <input type="checkbox" class="checkbox checkbox--error" name="" data-box="box2">
+                        <i class="fa fa-check"></i>
+                        Error 2
+                    </label>
+
+                </div>
+            </div>
+            <script>
+                const groups = document.querySelectorAll('.checkbox-group--sub')
+
+                groups.forEach(group => {
+
+                    const checkboxes = group.querySelectorAll('[data-box]:not([data-box="box-all"])');
+                    const boxAll = group.querySelector('[data-box="box-all"]')
+
+                    checkboxes.forEach(box => {
+                        box.addEventListener('change', () => {
+                            const allChecked = [...checkboxes].every(b => b.checked);
+                            const someChecked = [...checkboxes].some(b => b.checked);
+
+                            boxAll.checked = allChecked;
+                            boxAll.indeterminate = !allChecked && someChecked
+                        }
+
+                        )
+                    })
+                })
+            </script>
+        </div>
+        <!-- toggle -->
+
+        <div>
+            <h3>Toggle</h3>
+            <label>
+                <input type="checkbox" class="button button--toggle" name="" data-box="box">
+
+            </label>
+            <label>
+                <input type="checkbox" class="button button--toggle" name="" data-box="box">
+
+            </label>
+            <label>
+                <input type="checkbox" class="button button--toggle" name="" data-box="box">
+
+            </label>
+        </div>
+        <div class="button-group--master">
+            <h3>Button Group</h3>
+            <div class="button-group--sub">
+                <button class="button-group default" aria-pressed="false"><i class="fa fa-circle-question"></i>Button
+                    Group</label>
+                    <button class="button-group default" aria-pressed="false"><i
+                            class="fa fa-circle-question"></i>Button Group</label>
+                        <button class="button-group default" aria-pressed="false"><i
+                                class="fa fa-circle-question"></i>Button Group</label>
+                            <button class="button-group default" aria-pressed="false" disabled><i
+                                    class="fa fa-circle-question"></i>Button Group</button>
+            </div>
+            <div class="button-group--sub">
+                <button class="button-group default" aria-pressed="false"><i class="fa fa-circle-question"></i>Button
+                    Group</button>
+                <button class="button-group default" aria-pressed="false" disabled><i
+                        class="fa fa-circle-question"></i>Button Group</button>
+
+            </div>
+            <div class="button-group--sub">
+                <button class="button-group default" aria-pressed="false"><i class="fa fa-circle-question"></i>
+                </button>
+                <button class="button-group default" aria-pressed="false"><i class="fa fa-circle-question"></i>
+                </button>
+                <button class="button-group default" aria-pressed="false" disabled><i class="fa fa-circle-question"></i>
+                </button>
+            </div>
+
+            <script>
+                document.addEventListener('click', (e) => {
+                    const b = e.target.closest('.button-group');
+
+                    if (!b || b.disabled) return;
+
+                    const isPressed = b.getAttribute('aria-pressed') === 'true';
+
+                    b.setAttribute('aria-pressed', String(!isPressed));
+                    b.classList.toggle('is-selected', !isPressed);
+                });
+            </script>
+        </div>
     </div>
+    <script>
+
+        //class tree
+        function getHtmlTree(element, depth = 0) {
+            let tree = '';
+
+            // Get the element's classes and ID
+            const classes = element.className.split(' ').filter(Boolean);
+            const id = element.id ? `#${element.id}` : '';
+
+            // Create a prefix for indentation
+            const prefix = '  '.repeat(depth); // Adjust spacing as needed
+
+            // Add the current element to the tree
+            tree += `${prefix}${element.tagName.toLowerCase()} ${id} ${classes.join(' ')}\n`;
+
+            // Recurse for each child element
+            // Recurse for each child element
+            Array.from(element.children).forEach(child => {
+                tree += getHtmlTree(child, depth + 1);
+            });
+
+            return tree;
+        }
+
+        // Start from the body or any root element
+        const htmlTree = getHtmlTree(document.body);
+        console.log(htmlTree);
+
+    </script>
 </body>
 
 </html>
