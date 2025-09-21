@@ -251,7 +251,7 @@ html > * {
 }
 .checkbox-group .checkbox-group--sub .checkbox-item:indeterminate ~ i.fa-minus {
   display: inline-block;
-  color: inherit;
+  color: rgb(255, 255, 255);
 }
 .checkbox-group .checkbox-group--sub .checkbox--disabled:indeterminate {
   background-color: rgb(246, 246, 246);
@@ -261,7 +261,7 @@ html > * {
 }
 .checkbox-group .checkbox-group--sub .checkbox--disabled:indeterminate ~ i.fa-minus {
   display: inline-block;
-  color: inherit;
+  color: rgb(92, 92, 92);
 }
 .checkbox-group .checkbox-group--sub .checkbox--error:indeterminate {
   background-color: rgb(247, 236, 236);
@@ -271,7 +271,7 @@ html > * {
 }
 .checkbox-group .checkbox-group--sub .checkbox--error:indeterminate ~ i.fa-minus {
   display: inline-block;
-  color: inherit;
+  color: rgb(218, 103, 107);
 }
 
 .button-group--master .button-group--sub {

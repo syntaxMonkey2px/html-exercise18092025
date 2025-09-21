@@ -50,10 +50,6 @@ html>* {
 
 }
 
-//  button basic 
-// .button-basic-group>*{
-//     outline: 1px solid red;
-// }
 .button-basic-group {
     display: flex;
     justify-content: left;
@@ -387,14 +383,14 @@ html>* {
         //indeterminate
 
         $indeterminate-states: (
-            "checkbox-item": default,
-            "checkbox--disabled": disabled-bg,
-            "checkbox--error": error-bg
+            "checkbox-item": (bg: default, minus: font),
+            "checkbox--disabled": (bg: disabled-bg, minus: disabled-2),
+            "checkbox--error": (bg:error-bg, minus: error)
         );
 
-    @each $class, $color in $indeterminate-states {
+    @each $class, $state in $indeterminate-states {
         .#{$class}:indeterminate {
-            background-color: map-get($theme-colors, $color);
+            background-color: map-get($theme-colors, map-get($state, bg));
         }
 
         .#{$class}:indeterminate~i {
@@ -405,8 +401,7 @@ html>* {
 
             &.fa-minus {
                 display: inline-block;
-                color: inherit;
-
+                color: map-get($theme-colors, map-get($state, minus));
             }
         }
 
