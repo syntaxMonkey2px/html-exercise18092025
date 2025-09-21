@@ -21,7 +21,6 @@ $theme-colors: (
 
 
 @mixin focus-outline {
-    // background-color: map-get($theme-colors, default);
     outline: 1px solid map-get($theme-colors, default);
     outline-offset: 2px;
 }
@@ -50,98 +49,109 @@ html>* {
 
 }
 
+@mixin hover--default {
+    background-color: map-get($theme-colors, font);
+    color: map-get($theme-colors, default);
+    outline: map-get($theme-colors, default) solid 1px;
+}
+
 .button-basic-group {
     display: flex;
     justify-content: left;
+
+
+    .button--basic {
+        display: grid;
+        place-items: center;
+        gap: 1em;
+        margin-right: 3em;
+
+    }
+
+    .button {
+        box-sizing: border-box;
+        background-color: map-get($theme-colors, default);
+        color: map-get($theme-colors, font);
+        font-weight: 600;
+        border: none;
+
+        cursor: pointer;
+        font-size: .75em;
+        transition: background-color 0.1s ease;
+
+        // basic1 button style
+        &.button--basic1,
+        &.button--basic1--disabled {
+            border-radius: 3px;
+            padding: .75rem 2rem;
+        }
+
+        // secondary button style
+        &.button--basic2 {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+
+        &.button--basic1--disabled {
+            .arrow {
+                visibility: visible;
+                color: currentColor;
+            }
+        }
+
+        //status
+
+        &:hover {
+            @include hover--default;
+
+            .arrow {
+                visibility: visible;
+                color: currentColor;
+            }
+        }
+
+        &:focus {
+            @include focus-outline;
+
+            .arrow {
+                visibility: visible;
+                color: currentColor;
+            }
+        }
+
+
+        &:focus:hover {
+            background-color: map-get($theme-colors, hover);
+            color: map-get($theme-colors, default);
+            outline: map-get($theme-colors, default) solid 1px;
+
+            .arrow {
+                visibility: visible;
+                color: map-get($theme-colors, hover)
+            }
+        }
+
+        &:disabled {
+            background-color: map-get($theme-colors, disabled-bg);
+            color: map-get($theme-colors, disabled-2);
+            outline: none;
+            cursor: not-allowed;
+        }
+    }
+
+
+    .button .arrow {
+        visibility: hidden;
+        margin: 0 2em;
+    }
 }
 
-.button--basic {
-    display: grid;
-    place-items: center;
-    gap: 1em;
-    margin-right: 3em;
-
-}
-
-.button {
-    box-sizing: border-box;
-    background-color: map-get($theme-colors, default);
-    color: map-get($theme-colors, font);
-    font-weight: 600;
-    border: none;
-
-    cursor: pointer;
-    font-size: .75em;
-    transition: background-color 0.1s ease;
-
-    // basic1 button style
-    &.button--basic1,
-    &.button--basic1--disabled {
-        border-radius: 3px;
-        padding: .75rem 2rem;
-    }
-
-    // secondary button style
-    &.button--basic2 {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-    }
-
-
-    &.button--basic1--disabled {
-        .arrow {
-            visibility: visible;
-            color: currentColor;
-        }
-    }
-
-    //status
-
-    &:hover {
-        background-color: map-get($theme-colors, font);
-        color: map-get($theme-colors, default);
-        outline: map-get($theme-colors, default) solid 1px;
-
-        .arrow {
-            visibility: visible;
-            color: currentColor;
-        }
-    }
-
-    &:focus {
-        @include focus-outline;
-
-        .arrow {
-            visibility: visible;
-            color: currentColor;
-        }
-    }
-
-
-    &:focus:hover {
-        background-color: map-get($theme-colors, hover);
-        color: map-get($theme-colors, default);
-        outline: map-get($theme-colors, default) solid 1px;
-
-        .arrow {
-            visibility: visible;
-            color: map-get($theme-colors, hover)
-        }
-    }
-
-    &:disabled {
-        background-color: map-get($theme-colors, disabled-bg);
-        color: map-get($theme-colors, disabled-2);
-        outline: none;
-        cursor: not-allowed;
-    }
-}
-
-
-.button .arrow {
-    visibility: hidden;
-    margin: 0 2em;
+@mixin inner-circle {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
 }
 
 // radio button style
@@ -166,15 +176,14 @@ html>* {
 
             // inner-circle
             &::after {
-                content: "";
                 width: .70em;
                 height: .70em;
-                position: absolute;
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
                 background-color: map-get($theme-colors, font);
-                border-radius: 50%;
+
+                @include inner-circle()
             }
 
             &:not(:checked) {
@@ -212,15 +221,13 @@ html>* {
                 border: none;
 
                 &::after {
-                    content: "";
+                    @include inner-circle;
                     width: .70em;
                     height: .70em;
-                    position: absolute;
                     top: 50%;
                     left: 50%;
                     transform: translate(-50%, -50%);
                     background-color: map-get($theme-colors, disabled-2);
-                    border-radius: 50%;
                 }
             }
         }
@@ -233,12 +240,12 @@ html>* {
     background-color: map-get($theme-colors, default);
 }
 
-@mixin boxAlertStyle {
+@mixin boxOtherStyle {
     border: 1.5px solid currentColor;
     cursor: not-allowed;
 }
 
-@mixin uncheckedHover--default {
+@mixin hover--unchecked {
     &:hover {
         background-color: map-get($theme-colors, default-light);
         border: none;
@@ -248,22 +255,6 @@ html>* {
         color: map-get($theme-colors, default);
     }
 }
-
-@mixin indeterminate-bg {
-    .checkbox-item {
-        background-color: map-get($theme-colors, default);
-    }
-
-    .checkbox--disabled {
-        background-color: map-get($theme-colors, disabled-bg);
-    }
-
-    .checkbox--error {
-        background-color: map-get($theme-colors, error-bg);
-    }
-}
-
-;
 
 .checkbox-group {
     display: flex;
@@ -298,7 +289,6 @@ html>* {
             }
         }
 
-
         .checkbox {
             appearance: none;
             display: inline-block;
@@ -312,8 +302,7 @@ html>* {
             background-color: map-get($theme-colors, font);
 
             &:not(:checked):not(.checkbox--disabled):not(.checkbox--error) {
-                // background-color: map-get($theme-colors, font);
-                @include uncheckedHover--default;
+                @include hover--unchecked;
             }
 
             &:checked:not(.checkbox--disabled):not(.checkbox--error) {
@@ -327,9 +316,7 @@ html>* {
                     color: map-get($theme-colors, default);
                 }
 
-
             }
-
             &:focus-visible {
                 @include focus-outline;
             }
@@ -347,13 +334,10 @@ html>* {
 
             }
 
-
         }
 
-
-
         .checkbox--disabled {
-            @include boxAlertStyle;
+            @include boxOtherStyle;
             color: map-get($theme-colors, disabled-2);
             background-color: map-get($theme-colors, disabled-bg);
 
@@ -365,12 +349,12 @@ html>* {
         }
 
         .checkbox--error {
-            @include boxAlertStyle;
+            @include boxOtherStyle;
             color: map-get($theme-colors, error);
             background-color: map-get($theme-colors, error-bg);
 
-            &:checked + i.fa-check{
-                color:map-get($theme-colors, error-bg) ;
+            &:checked+i.fa-check {
+                color: map-get($theme-colors, error-bg);
             }
         }
 
@@ -409,19 +393,69 @@ html>* {
 }
 }
 
-//fix all minus color
-//add focus}
-//fix error ticks
+.toggle-group {
+    margin-left: 2em;
+    display: flex;
+    gap: .75em;
 
+    .toggle {
+        position: relative;
+        width: 2.5em;
+        height: 1.4em;
+        @include defaultFilled;
+        border-radius: 25px;
+        border: none;
+
+        &::after {
+            width: 1.1em;
+            height: 1.1em;
+            top: 50%;
+            left: 50%;
+            transform: translate(0%, -50%);
+            background-color: map-get($theme-colors, font);
+
+            @include inner-circle;
+            transition: 0.08s ease;
+        }
+
+        &:hover:not(&:disabled) {
+            @include hover--default;
+
+            &::after {
+                background-color: map-get($theme-colors, default);
+
+            }
+        }
+
+        &:focus-visible {
+            @include focus-outline;
+        }
+
+        &:disabled {
+            cursor: not-allowed;
+            background-color: map-get($theme-colors, disabled-1);
+
+            &::after {
+                transform: translate(-100%, -50%);
+            }
+        }
+
+        &.toggle-off {
+            @include hover--default;
+
+            &::after {
+                background-color: map-get($theme-colors, default);
+
+                transform: translate(-100%, -50%);
+            }
+        }
+    }
+}
 
 .button-group--master {
-
-
     .button-group--sub {
         display: flex;
         margin: 1.2em;
-
-
 
         button {
             padding: .5em .75em;
@@ -449,7 +483,6 @@ html>* {
             margin-right: .2em;
             font-size: 1.5em;
         }
-
 
     }
 

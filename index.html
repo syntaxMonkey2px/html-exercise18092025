@@ -10,21 +10,6 @@
 
 
 </head>
-<!-- 
-
-Write HTML showing two buttons, using SASS for styling - (in SCSS format
-with curly braces) to define the styles. One button will be used to show
-default, hover and focus styles, and a separate button which will be
-disabled.
-
-You can choose either the round buttons or the rectangular buttons.
-Choose colours that are similar to the attached design.
-
-If the button is hovered over, any content below the button is pushed
-down. How could the button be styled so that content below the button
-remains fixed?
- -->
-
 <body>
     <div class="content">
         <div class="button-basic-group">
@@ -59,7 +44,6 @@ remains fixed?
                         disabled />Disabled</label>
             </div>
         </div>
-
 
 
         <!-- checkbox -->
@@ -155,30 +139,37 @@ remains fixed?
 
         <div>
             <h3>Toggle</h3>
-            <label>
-                <input type="checkbox" class="button button--toggle" name="" data-box="box">
+            <div class="toggle-group">
+                <button class="toggle" aria-pressed="false" id="toggle1"></button><label for="toggle1">On/Off</label>
+                <button class="toggle" aria-pressed="false" id="toggle2" disabled></button><label
+                    for="toggle2">Disabled</label>
+            </div>
+            <script>
+                document.addEventListener('click', (e) => {
+                    const b = e.target.closest('.toggle');
 
-            </label>
-            <label>
-                <input type="checkbox" class="button button--toggle" name="" data-box="box">
+                    if (!b || b.disabled) return;
 
-            </label>
-            <label>
-                <input type="checkbox" class="button button--toggle" name="" data-box="box">
+                    const toggleOff = b.getAttribute('aria-pressed') === 'true';
 
-            </label>
+                    b.setAttribute('aria-pressed', String(!toggleOff));
+                    b.classList.toggle('toggle-off', !toggleOff);
+                    
+                    
+                });
+            </script>
         </div>
         <div class="button-group--master">
             <h3>Button Group</h3>
             <div class="button-group--sub">
                 <button class="button-group default" aria-pressed="false"><i class="fa fa-circle-question"></i>Button
-                    Group</label>
-                    <button class="button-group default" aria-pressed="false"><i
-                            class="fa fa-circle-question"></i>Button Group</label>
-                        <button class="button-group default" aria-pressed="false"><i
-                                class="fa fa-circle-question"></i>Button Group</label>
-                            <button class="button-group default" aria-pressed="false" disabled><i
-                                    class="fa fa-circle-question"></i>Button Group</button>
+                    Group</button>
+                <button class="button-group default" aria-pressed="false"><i class="fa fa-circle-question"></i>Button
+                    Group</button>
+                <button class="button-group default" aria-pressed="false"><i class="fa fa-circle-question"></i>Button
+                    Group</button>
+                <button class="button-group default" aria-pressed="false" disabled><i
+                        class="fa fa-circle-question"></i>Button Group</button>
             </div>
             <div class="button-group--sub">
                 <button class="button-group default" aria-pressed="false"><i class="fa fa-circle-question"></i>Button
@@ -210,36 +201,6 @@ remains fixed?
             </script>
         </div>
     </div>
-    <script>
-
-        //class tree
-        function getHtmlTree(element, depth = 0) {
-            let tree = '';
-
-            // Get the element's classes and ID
-            const classes = element.className.split(' ').filter(Boolean);
-            const id = element.id ? `#${element.id}` : '';
-
-            // Create a prefix for indentation
-            const prefix = '  '.repeat(depth); // Adjust spacing as needed
-
-            // Add the current element to the tree
-            tree += `${prefix}${element.tagName.toLowerCase()} ${id} ${classes.join(' ')}\n`;
-
-            // Recurse for each child element
-            // Recurse for each child element
-            Array.from(element.children).forEach(child => {
-                tree += getHtmlTree(child, depth + 1);
-            });
-
-            return tree;
-        }
-
-        // Start from the body or any root element
-        const htmlTree = getHtmlTree(document.body);
-        console.log(htmlTree);
-
-    </script>
 </body>
 
 </html>

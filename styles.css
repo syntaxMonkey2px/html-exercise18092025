@@ -14,15 +14,13 @@ html > * {
   display: flex;
   justify-content: left;
 }
-
-.button--basic {
+.button-basic-group .button--basic {
   display: grid;
   place-items: center;
   gap: 1em;
   margin-right: 3em;
 }
-
-.button {
+.button-basic-group .button {
   box-sizing: border-box;
   background-color: rgb(57, 131, 125);
   color: rgb(255, 255, 255);
@@ -32,53 +30,52 @@ html > * {
   font-size: 0.75em;
   transition: background-color 0.1s ease;
 }
-.button.button--basic1, .button.button--basic1--disabled {
+.button-basic-group .button.button--basic1, .button-basic-group .button.button--basic1--disabled {
   border-radius: 3px;
   padding: 0.75rem 2rem;
 }
-.button.button--basic2 {
+.button-basic-group .button.button--basic2 {
   width: 40px;
   height: 40px;
   border-radius: 50%;
 }
-.button.button--basic1--disabled .arrow {
+.button-basic-group .button.button--basic1--disabled .arrow {
   visibility: visible;
   color: currentColor;
 }
-.button:hover {
+.button-basic-group .button:hover {
   background-color: rgb(255, 255, 255);
   color: rgb(57, 131, 125);
   outline: rgb(57, 131, 125) solid 1px;
 }
-.button:hover .arrow {
+.button-basic-group .button:hover .arrow {
   visibility: visible;
   color: currentColor;
 }
-.button:focus {
+.button-basic-group .button:focus {
   outline: 1px solid rgb(57, 131, 125);
   outline-offset: 2px;
 }
-.button:focus .arrow {
+.button-basic-group .button:focus .arrow {
   visibility: visible;
   color: currentColor;
 }
-.button:focus:hover {
+.button-basic-group .button:focus:hover {
   background-color: rgb(233, 246, 245);
   color: rgb(57, 131, 125);
   outline: rgb(57, 131, 125) solid 1px;
 }
-.button:focus:hover .arrow {
+.button-basic-group .button:focus:hover .arrow {
   visibility: visible;
   color: rgb(233, 246, 245);
 }
-.button:disabled {
+.button-basic-group .button:disabled {
   background-color: rgb(246, 246, 246);
   color: rgb(92, 92, 92);
   outline: none;
   cursor: not-allowed;
 }
-
-.button .arrow {
+.button-basic-group .button .arrow {
   visibility: hidden;
   margin: 0 2em;
 }
@@ -100,14 +97,14 @@ html > * {
   transition: background-color 0.1s ease;
 }
 .radio-group label .button--radio::after {
-  content: "";
   width: 0.7em;
   height: 0.7em;
-  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: rgb(255, 255, 255);
+  content: "";
+  position: absolute;
   border-radius: 50%;
 }
 .radio-group label .button--radio:not(:checked) {
@@ -139,14 +136,14 @@ html > * {
 }
 .radio-group label .button--radio.radio-disabled::after {
   content: "";
+  position: absolute;
+  border-radius: 50%;
   width: 0.7em;
   height: 0.7em;
-  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: rgb(92, 92, 92);
-  border-radius: 50%;
 }
 
 .checkbox-group {
@@ -272,6 +269,60 @@ html > * {
 .checkbox-group .checkbox-group--sub .checkbox--error:indeterminate ~ i.fa-minus {
   display: inline-block;
   color: rgb(218, 103, 107);
+}
+
+.toggle-group {
+  margin-left: 2em;
+  display: flex;
+  gap: 0.75em;
+}
+.toggle-group .toggle {
+  position: relative;
+  width: 2.5em;
+  height: 1.4em;
+  background-color: rgb(57, 131, 125);
+  border-radius: 25px;
+  border: none;
+}
+.toggle-group .toggle::after {
+  width: 1.1em;
+  height: 1.1em;
+  top: 50%;
+  left: 50%;
+  transform: translate(0%, -50%);
+  background-color: rgb(255, 255, 255);
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  transition: 0.08s ease;
+}
+.toggle-group .toggle:hover:not(.toggle-group .toggle:disabled) {
+  background-color: rgb(255, 255, 255);
+  color: rgb(57, 131, 125);
+  outline: rgb(57, 131, 125) solid 1px;
+}
+.toggle-group .toggle:hover:not(.toggle-group .toggle:disabled)::after {
+  background-color: rgb(57, 131, 125);
+}
+.toggle-group .toggle:focus-visible {
+  outline: 1px solid rgb(57, 131, 125);
+  outline-offset: 2px;
+}
+.toggle-group .toggle:disabled {
+  cursor: not-allowed;
+  background-color: rgb(68, 68, 68);
+}
+.toggle-group .toggle:disabled::after {
+  transform: translate(-100%, -50%);
+}
+.toggle-group .toggle.toggle-off {
+  background-color: rgb(255, 255, 255);
+  color: rgb(57, 131, 125);
+  outline: rgb(57, 131, 125) solid 1px;
+}
+.toggle-group .toggle.toggle-off::after {
+  background-color: rgb(57, 131, 125);
+  transform: translate(-100%, -50%);
 }
 
 .button-group--master .button-group--sub {
